@@ -45,17 +45,37 @@
         .login-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
     </style>
+    <script>
+        function validateForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const correctUsername = 'קובי לוי';
+            const correctPassword = 'עשיתי את זה דרך צ\'אט גפט לקח לי שני דקות סה\'\'כ';
+            if (username === correctUsername && password === correctPassword) {
+                window.location.href = 'welcome.html';
+            } else {
+                document.getElementById('error-message').innerText = 'שם המשתמש או הסיסמא שגויים';
+            }
+            return false;
+        }
+    </script>
 </head>
 <body>
     <div class="login-container">
         <h1>כניסה לאתר</h1>
-        <form action="/login" method="post">
+        <form onsubmit="return validateForm()">
             <label for="username">שם משתמש:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">סיסמא:</label>
             <input type="password" id="password" name="password" required>
             <input type="submit" value="התחבר">
+            <p id="error-message" class="error"></p>
         </form>
     </div>
 </body>
